@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "com.github.johnrengelman.shadow" version "6.0.0"
+}
+
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
+
+
+
+repositories {
+    mavenCentral()
+}
+
+configurations{
+  demo
+  shadow
+}
+dependencies {
+    implementation 'org.json:json:20171018'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.6'
+}
+
+
+
+run { 
+    standardInput = System.in 
+}
+
+shadowJar {
+   archiveBaseName = 'NBAStats'
+   classifier = ''
+   archiveVersion = ''
+}
+
+application {
+    mainClassName = "NbaStats"
+}
