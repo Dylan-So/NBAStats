@@ -76,15 +76,22 @@ public class NbaStats {
 				break;
 			case 4:
 				System.out.println("Enter Player's First Name");
-				String first = input.nextLine();
+				String first = input.next();
 				System.out.println("Enter Player's Last Name");
-				String last = input.nextLine();
+				String last = input.next();
 				try {
 					data = parser.postJSON("https://probasketballapi.com/players", first, last);
 				} catch (IOException e) {
 					System.out.println(e.getMessage());
 				}
-				//parser.parseContracts(data);
+				parser.parsePlayer(data);
+				parser.displayPlayer();
+				System.out.println("(Press Enter to Continue)");
+				try {
+					System.in.read();
+				} catch (Exception e) {
+					System.out.println(e);
+				}
 				break;
 			case 5:
 				break;

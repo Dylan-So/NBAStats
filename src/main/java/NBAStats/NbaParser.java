@@ -11,6 +11,7 @@ public class NbaParser {
 	private String apiKey;
 	private ArrayList<Team> teams = new ArrayList<>();
 	private ArrayList<Contract> contracts = new ArrayList<>();
+	private Player player = new Player();
 
 	public NbaParser(String key) {
 		apiKey = key;
@@ -138,5 +139,24 @@ public class NbaParser {
 
 	public ArrayList<Contract> getContracts() {
 		return contracts;
+	}
+
+	public void parsePlayer(String data) {
+		JSONArray players = new JSONArray(data);
+		for (Object tempPlayer : players) {
+			JSONObject thePlayer = (JSONObject) tempPlayer;
+			int id = thePlayer.getInt("player_id");
+			int jersey = thePlayer.getInt("team_id");
+			String playerName = thePlayer.getString("player_name");
+			int birth = thePlayer.getInt("birth_date");
+			player.setId(id);
+			player.setJersey(jersey);
+			player.setName(playerName);
+			player.setBirthdate(birth);
+		}
+	}
+
+	public void displayPlayer() {
+		System.out.println("\n" + player);
 	}
 }

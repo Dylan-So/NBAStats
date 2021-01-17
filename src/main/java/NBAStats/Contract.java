@@ -14,7 +14,11 @@ public class Contract {
 		desc = newDesc;
 		team = newTeam.substring(0, 1).toUpperCase() + newTeam.substring(1).toLowerCase();
 		String[] name = newName.split("-");
-		playerName = name[0].substring(0,1).toUpperCase() + name[0].substring(1).toLowerCase() + " " + name[1].substring(0,1).toUpperCase() + name[1].substring(1).toLowerCase();
+		if (name.length == 2) {
+			playerName = name[0].substring(0,1).toUpperCase() + name[0].substring(1).toLowerCase() + " " + name[1].substring(0,1).toUpperCase() + name[1].substring(1).toLowerCase();
+		} else {
+			playerName = newName;
+		}
 	}
 
 	@Override
